@@ -5,42 +5,26 @@
  *     struct ListNode *next;
  * };
  */
+struct ListNode *front;
 
-struct ListNode *helper(struct ListNode* node) {
-    if (node == NULL || node->next == NULL) {
-        return node;
+bool isPalindromeRec(struct ListNode *head){
+    if (head == NULL) {
+        return true;
     }
 
-    struct ListNode *new = helper(node->next);
-    node->next->next = node;
-    node->next = NULL;
-    return new;
-}
+    bool result = isPalindromeRec(head->next);
 
-bool isPalindrome(struct ListNode* head) {
-    if (head == NULL) {
+    if (!result) return false;
+
+    if (front->val != head->val) {
         return false;
     }
 
-    struct ListNode *fastNode = head->next->next;
-    struct ListNode *slowNode = head->next;
-
-    while (fastNode != NULL){
-        fastNode = fastNode->next->next;
-        slowNode = slowNode->next->next;
-    }
-
-    struct ListNode *new = helper(slowNode);
-        while (new!= NULL) {
-            if (new->val == head->val && new != NULL) {
-            new = new->next;
-            head = head->next;
-            
-        } else {
-            return false;
-        }
-    }
-    
+    front = front->next;
     return true;
+}
 
+bool isPalindrome(struct ListNode* head) {
+    front = head;
+    return isPalindromeRec(head);
 }
