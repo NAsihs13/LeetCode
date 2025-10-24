@@ -7,6 +7,10 @@ double myPow(double x, int n) {
         x = 1/x;
         exp = -exp;
     }
-
-    return x * myPow(x, exp-1);
+    if (exp % 2 == 0) {
+        double half = myPow(x, exp / 2);
+        return half * half;
+    } else {
+        return x * myPow(x, exp - 1);
+    }
 }
