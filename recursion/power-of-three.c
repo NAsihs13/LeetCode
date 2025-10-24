@@ -5,5 +5,5 @@ bool isPowerOfThree(int n) {
         return true;
     }
 
-    isPowerOfThree(n/3);
+    return isPowerOfThree(n/3);
 }
