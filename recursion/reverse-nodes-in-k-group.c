@@ -28,6 +28,8 @@ struct ListNode* reverseKGroup(struct ListNode* head, int k) {
 
     head->next = reverseKGroup(curr, k);
 
+    return prev;
+
 
 
 
