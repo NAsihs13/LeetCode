@@ -6,15 +6,15 @@
  * };
  */
 struct ListNode* swapPairs(struct ListNode* head) {
-    if (head == NULL || head->next) return head;
+    if (head == NULL || head->next == NULL) return head;
 
-    struct ListNode *rest = swapPairs(n2);
+    struct ListNode *n1 = head;
+    struct ListNode *n2 = head->next;
 
-    struct node *n1 = curr;
-    struct node *n2 = curr->next;
+    struct ListNode *rest = swapPairs(n2->next);
 
     n2->next = n1;
-    n1->next = curr->next;
+    n1->next = rest;
 
     return n2;
 
