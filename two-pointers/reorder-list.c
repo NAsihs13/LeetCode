@@ -6,15 +6,14 @@
  * };
  */
 
-struct ListNode *dfs (struct ListNode *left, struct ListNode *right) {
+struct ListNode *dfs(struct ListNode *left, struct ListNode *right) {
     if (right == NULL) return left;
 
     left = dfs(left, right->next);
-    if (left == NULL) return NULL;
 
-    if (left->next == right || left == right) {
-        right->next = NULL;
-        return NULL;
+    if (left == right || left->next == right) {
+        right->next == NULL;
+        return right;
     }
 
     struct ListNode *nextLeft = left->next;
@@ -22,7 +21,9 @@ struct ListNode *dfs (struct ListNode *left, struct ListNode *right) {
     right->next = nextLeft;
 
     return nextLeft;
+
 }
+
 
 void reorderList(struct ListNode* head) {
     dfs(head, head);
